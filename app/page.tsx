@@ -1,3 +1,4 @@
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
@@ -34,7 +35,7 @@ export default function Home() {
         </SignedIn>
 
         {/* SignedOut */}
-        <SignedOut
+        <SignedOut>
           <SignInButton
             mode="modal"
             fallbackRedirectUrl={"/dashboard"}
