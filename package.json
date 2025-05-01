@@ -13,10 +13,13 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.503.0",
+    "tailwind-merge": "^3.2.0"
+    "@clerk/clerk-react": "^5.30.2",
+    "@clerk/nextjs": "^6.18.1",
+    "convex": "^1.23.0",
     "next": "15.3.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.2.0"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
