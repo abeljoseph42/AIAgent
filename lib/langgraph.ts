@@ -1,6 +1,12 @@
 import { ChatAnthropic } from "@langchain/anthropic";
 import { ToolNode } from "@langchain/langgraph/prebuilt";
 import wxflows from "@wxflows/sdk/langchain";
+import {
+    END,
+    MessagesAnnotation,
+    START,
+    StateGraph
+} from "@langchain/langgraph";
 
 
 //customers: https://introspection.apis.stepzen.com/customers
@@ -28,3 +34,13 @@ const initialiseModel = () => {
 };
 
 
+const createworkflow = () => {
+    const model = initialiseModel();
+
+    const stateGraph = new StateGraph(MessagesAnnotation);.addNode(
+        "agent", 
+        async (state) => {
+             const systemContent = SYSTEM_MESSAGE;
+        }
+    );
+};
