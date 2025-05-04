@@ -1,15 +1,19 @@
 import { ChatAnthropic } from "@langchain/anthropic";
 import { ToolNode } from "@langchain/langgraph/prebuilt";
-import { wxflows } from "@wxflows/sdk/langchain";
+import wxflows from "@wxflows/sdk/langchain";
+
+
+//customers: https://introspection.apis.stepzen.com/customers
+//comments: https://dummyjson.com/comments
 
 // Connect to wxFlows
-const toolCLient = new wxflows({
+const toolClient = new wxflows({
     endpoint: process.env.WXFLOWS_ENDPOINT || "",
-    apiKey: process.env.WXFLOWS_API_KEY,
+    apikey: process.env.WXFLOWS_API_KEY,
 })
 
 // Retrieve the tools from wxFlows
-const tools = await toolClient.lcTools();
+const tools = await toolClient.lcTools;
 const toolNode = new ToolNode(tools);
 
 
@@ -22,3 +26,5 @@ const initialiseModel = () => {
 
     return model;
 };
+
+
