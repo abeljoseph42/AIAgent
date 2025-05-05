@@ -1,34 +1,35 @@
-'use client'  
+'use client'
 
-
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 interface NavigationContextType {
     isMobileNavOpen: boolean;
-    setisMobileNavOpen: (open: boolean) => void;
+    setIsMobileNavOpen: (open: boolean) => void;
     closeMobileNav: () => void;
 }
 
 export const NavigationContext = createContext<NavigationContextType>({
     isMobileNavOpen: false,
-    setisMobileNavOpen: () => {},
+    setIsMobileNavOpen: () => {},
     closeMobileNav: () => {},
 });
 
-export function NavigationProvider({
+export function NavigationProvider ( {
     children,
 }: {
-  children: React.ReactNode;
+    children: React.ReactNode;
 }) {
-    const [isMobileNavOpen, setisMobileNavOpen] = useState(false);
+    const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
-    const closeMobileNav = () => setisMobileNavOpen(false);
+    const closeMobileNav = () => setIsMobileNavOpen(false);
 
-    return (
-    <NavigationContext 
-        value={{ isMobileNavOpen, setisMobileNavOpen, closeMobileNav }}
-    >
-        {children}
-    </NavigationContext>
+    return ( 
+        <NavigationContext.Provider
+            value={{ isMobileNavOpen, setIsMobileNavOpen, closeMobileNav }}
+        >
+            {children}
+        </NavigationContext.Provider>
     );
-}
+} 
+
+
