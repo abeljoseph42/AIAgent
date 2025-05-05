@@ -1,4 +1,4 @@
-import ChatInterface from "@/components/ChatInterface";
+import ChatInterface from "@/components/ChatInterface"
 import { Id } from "@/convex/_generated/dataModel";
 import { api } from "@/convex/_generated/api";
 import { getConvexClient } from "@/lib/convex"
