@@ -1,4 +1,4 @@
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 // Red underlined because the button.tsk does not exist yet
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { UserButton } from "@clerk/nextjs";
