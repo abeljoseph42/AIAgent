@@ -9,9 +9,11 @@ interface NavigationContextType {
     closeMobileNav: () => void;
 }
 
-export const NavigationContext = createContext<NavigationContextType | undefined>(
-    undefined
-);
+export const NavigationContext = createContext<NavigationContextType>({
+    isMobileNavOpen: false,
+    setisMobileNavOpen: () => {},
+    closeMobileNav: () => {},
+});
 
 export function NavigationProvider({
     children,
@@ -23,7 +25,7 @@ export function NavigationProvider({
     const closeMobileNav = () => setisMobileNavOpen(false);
 
     return (
-    <NavigationContext //Once Dashboard Layout function is made this red underline should be resolved 
+    <NavigationContext 
         value={{ isMobileNavOpen, setisMobileNavOpen, closeMobileNav }}
     >
         {children}
