@@ -15,7 +15,7 @@ export default function Home() {
             AI Agent Assistant 
           </h1>
           <p className="max-w-[600px] text-lg text-gray-600 md:text-xl/relaxed xl:text-2xl/relaxed"> 
-            Meet your new AI chat companion that gos beyond conversation - it can actually get things done! 
+            Meet your new AI chat companion that goes beyond conversation - it can actually get things done! 
             <br />
             <span className="text-gray-400 text-sm"> 
               Powered by IBM&apos;s WxTools & your favorite LLM&apos;s.
