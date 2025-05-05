@@ -5,6 +5,7 @@ import { UserButton } from "@clerk/nextjs";
 // This fixes the error on the User button red underline on line 25 but he doesnt not say to do
 // it in the video so we can remove it later if needed
 function Header(){
+    const{ } = use(NavigationContext) //red underline follows to Navigation Provider file under .lib
     return (
         <header className="border-a border-gray-20050 bg-white/80 backdrop-blur-xl sticky top-0 z-50">
             <div className="flex items-center justify-between px-4 py-3">
