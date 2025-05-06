@@ -2,13 +2,23 @@
 import { NavigationContext } from "@/lib/NavigationProvider";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import { useContext } from "react";
+import { useContext } from "react"; // use instead of usecontext
 import { Button } from "./ui/button";
 import { PlusIcon } from "@radix-ui/react-icons";
 
 function Sidebar() {
     const router = useRouter();
     const { closeMobileNav, isMobileNavOpen} = useContext(NavigationContext);
+
+    // const chats = useQuery(api.chats.listChats);
+    // const createChat = useMutation(api.chats.createChat);
+    // const deleteChat = useMutation(api.chats.deleteChat);
+
+    const handleClick = () => {
+    // TODO: Route to chat ID page   
+    //    router.push("/dashboard/chat");
+      closeMobileNav();
+    }
     console.log("Sidebar isMobileNavOpen:", isMobileNavOpen);
     function handleNewChat() {
         console.log("New Chat button clicked");
@@ -22,9 +32,28 @@ function Sidebar() {
             onClick={closeMobileNav}
             />
         )}
+<div    
+        className={cn(
+            "fixed md:inset-y-0 top-14 bottom-0 left-0 z-50 w-72 bg-gray-50/80 backdrop-blur-xl border-r border-gray-200/50 transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0 md:top-0 flex flex-col",
+            isMobileNavOpen ? "translate-x-0" : "-translate-x-full"
+        )}
+      >
+        <div className="p-4 border-b border-gray-200/50">
+          <Button
+            onClick={handleNewChat}
+            className="w-full bg-white hover:bg-gray-50 text-gray-700 border border-gray-200/50 shadow-sa hover:shadow transition-all duration 200"
+          >
+            <PlusIcon className="mr-2 h-4 w-4" /> New Chat
+          </Button>
+        </div>
 
-        <div className="font-bold text-lg p-4 absolute top-0 left-0">Sidebar</div>
-    </>;
-}
+        <div className="flex-1 overflow-y-auto space-y-2.5 p-4 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
+            {/*{chats?.map((chat) => (
+              <ChatRow key={chat._id} chat={chat} onDelete={handleDeleteChat} />
+            ))}*/}
+        </div>
+      </div>
+    </>
+};
 
 export default Sidebar

@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
 // Red underlined because the button.tsk does not exist yet
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
-import { UserButton } from "@clerk/nextjs";
-// This fixes the error on the User button red underline on line 25 but he doesnt not say to do
+import { UserButton } from "@clerk/nextjs"; // This fixes the error on the User button red underline on line 25 but he doesnt not say to do
 // it in the video so we can remove it later if needed
+import { use } from "react";
+import { NavigationContext } from "@/lib/NavigationProvider";
 function Header(){
+    const{ setisMobileNavOpen } = use(NavigationContext); 
     return (
         <header className="border-a border-gray-20050 bg-white/80 backdrop-blur-xl sticky top-0 z-50">
             <div className="flex items-center justify-between px-4 py-3">
@@ -12,7 +14,7 @@ function Header(){
                 <Button
                     variant="ghost"
                     size = "icon"
-                    // onClick={() => setIsMoblieNavOpen(true)}
+                    onClick={() => setisMobileNavOpen(true)}
                     className="md:hidden text-gray-500 hover:text-gray-700 hover:bg-gray-100/50"
                   >
                     <HamburgerMenuIcon className="h-5 w-5" />

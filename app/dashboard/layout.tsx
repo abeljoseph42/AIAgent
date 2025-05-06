@@ -13,7 +13,9 @@ export default function DashboardLayout({
   return (
     <NavigationProvider>
       <div className="flex h-screen">
-        <Sidebar />
+        <Authenticated>
+          <Sidebar />
+        </Authenticated>
         <div className="flex-1">
           <Header />
           <main>{children}</main>
