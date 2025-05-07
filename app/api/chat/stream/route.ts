@@ -101,10 +101,9 @@ export async function POST(req: Request) {
                                 output: event.data.output,
                             });
                         }
-
-                        // Send completion message without storing the response
-                        await sendSSEMessage(writer, { type: StreamMessageType.Done });
                     }
+                    // Send completion message ONCE after the stream ends
+                    await sendSSEMessage(writer, { type: StreamMessageType.Done });
                 } catch (streamError) {
                     console.error("Error in event stream:", streamError);
                     await sendSSEMessage(writer, {
