@@ -1,13 +1,18 @@
-import ChatInterface from "@/components/ChatInterface"
+import ChatInterface from "@/components/ChatInterface";
 import { Id } from "@/convex/_generated/dataModel";
 import { api } from "@/convex/_generated/api";
-import { getConvexClient } from "@/lib/convex"
+import { getConvexClient } from "@/lib/convex";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 
-export default async function ChatPage({ params }: { params: { chatId: string } }) {
-  const { chatId } = params;
-  const chatIdConvex = chatId as Id<"chats">;
+interface ChatPageProps {
+  params: {
+    chatId: Id<"chats">;
+  };
+}
+
+export default async function ChatPage({ params }: ChatPageProps) {
+  const { chatId } = await params;
 
   // Get user authentication
   const { userId } = await auth();
@@ -22,7 +27,7 @@ export default async function ChatPage({ params }: { params: { chatId: string } 
 
     // Check if chat exists & user is authorized to view it
     const chat = await convex.query(api.chats.getChat, {
-      id: chatIdConvex,
+      id: chatId,
       userId,
     });
 
@@ -34,11 +39,11 @@ export default async function ChatPage({ params }: { params: { chatId: string } 
     }
 
     // Get messages
-    const initialMessages = await convex.query(api.messages.list, { chatId: chatIdConvex });
+    const initialMessages = await convex.query(api.messages.list, { chatId });
 
     return (
       <div className="flex-1 overflow-hidden">
-        <ChatInterface chatId={chatIdConvex} initialMessages={initialMessages} />
+        <ChatInterface chatId={chatId} initialMessages={initialMessages} />
       </div>
     );
   } catch (error) {
