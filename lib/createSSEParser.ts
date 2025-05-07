@@ -7,7 +7,7 @@ import{
 
 //   Creates a parser for Server-Sent Events (SSE) streams.
 //   SSE allows real-time updates from server to client.
-export const creatSSEParser = () => {
+export const createSSEParser = () => {
     let buffer = "";
 
     const parse = (chunk: string): StreamMessage[] => {

@@ -7,7 +7,8 @@ export const SSE_LINE_DELIMITER = "\n\n" as const;
 
 export type MessageRole = "user" | "assistant";
 
-export interface Message {
+export interface Message extends BaseStreamMessage {
+  type: StreamMessageType.Message;
   role: MessageRole;
   content: string;
 }
