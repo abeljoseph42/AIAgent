@@ -7,12 +7,12 @@ import { auth } from "@clerk/nextjs/server";
 
 interface ChatPageProps {
   params: {
-    chatId: Id<"chats">;
+    chatId: string;
   };
 }
 
 export default async function ChatPage({ params }: ChatPageProps) {
-  const { chatId } = await params;
+  const chatIdConvex = params.chatId as Id<"chats">;
 
   // Get user authentication
   const { userId } = await auth();
@@ -27,7 +27,7 @@ export default async function ChatPage({ params }: ChatPageProps) {
 
     // Check if chat exists & user is authorized to view it
     const chat = await convex.query(api.chats.getChat, {
-      id: chatId,
+      id: chatIdConvex,
       userId,
     });
 
@@ -39,11 +39,11 @@ export default async function ChatPage({ params }: ChatPageProps) {
     }
 
     // Get messages
-    const initialMessages = await convex.query(api.messages.list, { chatId });
+    const initialMessages = await convex.query(api.messages.list, { chatId: chatIdConvex });
 
     return (
       <div className="flex-1 overflow-hidden">
-        <ChatInterface chatId={chatId} initialMessages={initialMessages} />
+        <ChatInterface chatId={chatIdConvex} initialMessages={initialMessages} />
       </div>
     );
   } catch (error) {
